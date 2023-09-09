@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="fw-light">{{ post.title }}</h1>
+            <p class="lead text-body-secondary">{{ post.user }}</p>
+        </div>
+    </div>
+</section>
+<div class="album py-5 bg-light" style="font-family:'Courier New'">
+    <div class="container">
+        <div class="row">
+            {% if post.cover_image %}
+            <div class="col-md-6">
+                <img src="{{ post.cover_image.url }}" class="img-fluid" style="max-height: 600px; object-fit: cover;">
+            </div>
+            {% endif %}
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text"><h3>Title: {{ post.title }}</h3>
+                        <p class="card-text"><h5>{{ post.user }}</h5>
+                        <p></p>
+                        <p class="card-text"># {{ post.content }}</p>
+                        <div class="mb-3">
+                            <label for="exampleFormControlTextarea1" class="form-label">Comments:</label>
+                                <div class="card-body" style="background-color: rgba(248, 249, 249)">
+                                    <p class="card-text">
+                                        <ul>
+                                        {% for comment in comments %}
+                                            <li>{{ comment.user.username }}: {{ comment.content }}</li>
+                                        {% endfor %}
+                                    </ul>
+                                </div>
+                        </div>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                            <a class="btn btn-primary" href="{% url 'add_comment' %}" style="">Comment</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

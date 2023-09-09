@@ -1,0 +1,124 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en" xmlns="http://www.w3.org/1999/html">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <!-- Підключення файлів стилів та JavaScript Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+    <body>
+    <header>
+        <nav class="navbar navbar-expand-lg navbar-dark bg-dark" aria-label="Offcanvas navbar large">
+    <div class="container-fluid">
+        <a class="navbar-brand" href="{% url 'post_list' %}"><h2>Twitter</h2></a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar2" aria-controls="offcanvasNavbar2" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="offcanvas offcanvas-end text-bg-dark" tabindex="-1" id="offcanvasNavbar2" aria-labelledby="offcanvasNavbar2Label">
+        <div class="offcanvas-header">
+          <h5 class="offcanvas-title" id="offcanvasNavbar2Label">Offcanvas</h5>
+          <button type="button" class="btn-close btn-close-white" data-bs-dismiss="offcanvas" aria-label="Close"></button>
+        </div>
+        <div class="offcanvas-body">
+          <ul class="navbar-nav justify-content-end flex-grow-1 pe-3">
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'guest_list' %}">Users</a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="{% url 'post_list' %}">Posts</a>
+            </li>
+              <li class="nav-item">
+              <a class="nav-link" href="{% url 'comment_list' %}">Comments</a>
+            </li>
+          </ul>
+            <div class="dropdown text-end">
+          <a href="#" class="d-block link-body-emphasis text-decoration-none dropdown-toggle" data-bs-toggle="dropdown" aria-expanded="false">
+            <img src="{% static 'img/image.png' %}" alt="mdo" width="32" height="32" class="rounded-circle">
+          </a>
+          <ul class="dropdown-menu text-small" style="">
+            <li><a class="dropdown-item" href="#">New project...</a></li>
+            <li><a class="dropdown-item" href="#">Settings</a></li>
+            <li><a class="dropdown-item" href="#">Profile</a></li>
+            <li><hr class="dropdown-divider"></li>
+            <li><a class="dropdown-item" href="#">Sign out</a></li>
+          </ul>
+        </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+    <main>
+        <div id="myCarousel" class="carousel slide mb-6" data-bs-ride="carousel">
+    <div class="carousel-indicators">
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="0" class="active" aria-label="Slide 1" aria-current="true"></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="1" aria-label="Slide 2" class=""></button>
+      <button type="button" data-bs-target="#myCarousel" data-bs-slide-to="2" aria-label="Slide 3" class=""></button>
+    </div>
+    <div class="carousel-inner">
+      <div class="carousel-item carousel-item-next carousel-item-start" style="height: 400px;">
+        <!-- Збільшення висоти до 500px -->
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+        </svg>
+        <div class="container">
+          <div class="carousel-caption text-start">
+            <h1>Welcome to our website!</h1>
+            <p class="opacity-75">If you haven't registered yet, this is a perfect moment to join our community.</p>
+              <p class="opacity-75">Join us and grow together! </p>
+            <p><a class="btn btn-lg btn-primary" href="#">Sign up now</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item" style="height: 400px;"> <!-- Збільшення висоти до 500px -->
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+        </svg>
+        <div class="container">
+          <div class="carousel-caption">
+            <h1>Share Your Stories with the World!</h1>
+            <p>Ready to showcase your life's moments and experiences?</p>
+            <p><a class="btn btn-lg btn-primary" href="{% url 'add_post' %}">Create new post</a></p>
+          </div>
+        </div>
+      </div>
+      <div class="carousel-item active carousel-item-start" style="height: 400px;"> <!-- Збільшення висоти до 500px -->
+        <svg class="bd-placeholder-img" width="100%" height="100%" xmlns="http://www.w3.org/2000/svg" aria-hidden="true" preserveAspectRatio="xMidYMid slice" focusable="false">
+          <rect width="100%" height="100%" fill="var(--bs-secondary-color)"></rect>
+        </svg>
+        <div class="container">
+          <div class="carousel-caption text-end">
+            <h1>Explore other people posts</h1>
+            <p>Do you want to find someone's list of posts?</p>
+              <p>#Just write username</p>
+               <form class="d-flex" role="search">
+          <input class="form-control me-2" type="search" placeholder="Search" aria-label="Search">
+          <button class="btn btn-outline-success" type="submit">Search</button>
+        </form>
+          </div>
+        </div>
+      </div>
+    </div>
+    <button class="carousel-control-prev" type="button" data-bs-target="#myCarousel" data-bs-slide="prev">
+      <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Previous</span>
+    </button>
+    <button class="carousel-control-next" type="button" data-bs-target="#myCarousel" data-bs-slide="next">
+      <span class="carousel-control-next-icon" aria-hidden="true"></span>
+      <span class="visually-hidden">Next</span>
+    </button>
+</div>
+        {% block content %}
+
+        {% endblock %}
+        </main>
+    <!-- Footer -->
+    <footer class="bg-light text-center py-3">
+        <p>&copy; 2023 Twitter. All Rights Reserved.</p>
+    </footer>
+</body>
+</html>

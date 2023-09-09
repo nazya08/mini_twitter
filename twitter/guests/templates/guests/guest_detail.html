@@ -1,0 +1,29 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="py-5 text-center container">
+    <div class="row py-lg-5">
+        <div class="col-lg-8 mx-auto">
+            <h1 class="fw-light">Welcome to {{ guest.username }} profile!</h1>
+        </div>
+    </div>
+</section>
+<div class="album py-5 bg-light" style="font-family:'Courier New'">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-6">
+                <div class="card shadow-sm">
+                    <div class="card-body">
+                        <p class="card-text"><h3>{{ guest.username }}</h3></p>
+                        <p class="card-text">{{ guest.email }}</p>
+                        <p class="card-text"><h5>Date of join: {{ guest.date_joined }}</h5></p>
+                        <div class="btn-group">
+                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

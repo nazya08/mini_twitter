@@ -1,0 +1,46 @@
+{% extends "base.html" %}
+
+{% load static %}
+{% block content %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{{ title }}</title>
+    <!-- Підключення файлів стилів та JavaScript Bootstrap -->
+    <link rel="stylesheet" type="text/css" href="{% static 'css/bootstrap.min.css' %}">
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+</head>
+<body>
+    <section class="py-5 text-center container">
+        <div class="row py-lg-5">
+            <div class="col-lg-6 col-md-8 mx-auto">
+                <h1 class="fw-light">{{ title }}</h1>
+                <p class="lead text-body-secondary">Список користувачів нашого сайту</p>
+                <p>
+                </p>
+            </div>
+        </div>
+    </section>
+    <div class="container">
+        <div class="row">
+            {% for guest in guests %}
+            <div class="col-md-3 mb-">
+                <div class="card">
+                    <img src="{% static 'img/image.png' %}" height="250" class="card-img-top" alt="User Image">
+                    <div class="card-body">
+                        <h4 class="card-title">{{ guest.username }}</h4>
+                        <p class="card-text">Email: {{ guest.email }}</p>
+                        <a href="{% url 'guest_detail' guest.pk %}" class="btn btn-secondary">View details</a>
+                        <a href="#" class="btn btn-secondary">Edit profile</a>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+    </div>
+</body>
+</html>
+{% endblock %}
