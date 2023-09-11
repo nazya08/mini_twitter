@@ -45,8 +45,8 @@ def add_comment(request):
     if request.method == 'POST':
         form = CommentForm(request.POST, request.FILES)
         if form.is_valid():
-            comment = form.save()
-            return redirect('post_detail', post_id=comment.pk)
+            form.save()
+            return redirect('comment_list')
     else:
         form = CommentForm()
     return render(request, 'posts/create_comment.html', {'form': form})

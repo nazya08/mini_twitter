@@ -1,4 +1,6 @@
 from django import forms
+from django.core.exceptions import ValidationError
+
 from posts.models import Post, Comment
 
 
@@ -21,11 +23,23 @@ class PostForm(forms.ModelForm):
 
 
 class CommentForm(forms.ModelForm):
+    def __init__(self, *args, **kwargs):
+        super().__init__(*args, **kwargs)
+        self.fields['user'].empty_label = "User is not chosen"
+        self.fields['post'].empty_label = "Post is not chosen"
 
     class Meta:
         model = Comment
-        fields = ['content', 'user']
+        fields = ['content', 'user', 'post']
         widgets = {
             'content': forms.Textarea(attrs={'class': 'form-control', 'rows': 3}),
             'user': forms.Select(attrs={'class': 'form-control'}),
+            'post': forms.Select(attrs={'class': 'form-control'})
         }
+
+    def clean_content(self):
+        content = self.cleaned_data['content']
+        if len(content) > 50:
+            raise ValidationError('Length must be less than 50')
+
+        return content
